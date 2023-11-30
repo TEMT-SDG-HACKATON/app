@@ -2,8 +2,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:sdg_hackaton_app/app/app.bottomsheets.dart';
 import 'package:sdg_hackaton_app/app/app.locator.dart';
-import 'package:sdg_hackaton_app/ui/common/app_strings.dart';
+
 import 'package:sdg_hackaton_app/ui/views/home/home_viewmodel.dart';
+import 'package:sdg_hackaton_app/utilities/constants/strings.dart';
 
 import '../helpers/test_helpers.dart';
 

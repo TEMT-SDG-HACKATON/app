@@ -7,6 +7,9 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart' as _i4;
 import 'package:flutter/material.dart';
+import 'package:sdg_hackaton_app/ui/views/auth/login/login_view.dart';
+import 'package:sdg_hackaton_app/ui/views/auth/signup/signup_view.dart';
+import 'package:sdg_hackaton_app/ui/views/auth/splash/splash_view.dart';
 import 'package:sdg_hackaton_app/ui/views/home/home_view.dart' as _i2;
 import 'package:sdg_hackaton_app/ui/views/startup/startup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
@@ -17,9 +20,18 @@ class Routes {
 
   static const startupView = '/startup-view';
 
+  static const splashView = '/splash-view';
+
+  static const loginView = '/login-view';
+
+  static const signupView = '/signup-view';
+
   static const all = <String>{
     homeView,
     startupView,
+    splashView,
+    signupView,
+    loginView,
   };
 }
 
@@ -33,6 +45,18 @@ class StackedRouter extends _i1.RouterBase {
       Routes.startupView,
       page: _i3.StartupView,
     ),
+    _i1.RouteDef(
+      Routes.splashView,
+      page: SplashView,
+    ),
+    _i1.RouteDef(
+      Routes.loginView,
+      page: LoginView,
+    ),
+    _i1.RouteDef(
+      Routes.signupView,
+      page: SignupView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
@@ -45,6 +69,24 @@ class StackedRouter extends _i1.RouterBase {
     _i3.StartupView: (data) {
       return _i4.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.StartupView(),
+        settings: data,
+      );
+    },
+     SplashView: (data) {
+      return _i4.MaterialPageRoute<dynamic>(
+        builder: (context) => const SplashView(),
+        settings: data,
+      );
+    },
+     LoginView: (data) {
+      return _i4.MaterialPageRoute<dynamic>(
+        builder: (context) => const LoginView(),
+        settings: data,
+      );
+    },
+     SignupView: (data) {
+      return _i4.MaterialPageRoute<dynamic>(
+        builder: (context) => const SignupView(),
         settings: data,
       );
     },

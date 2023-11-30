@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sdg_hackaton_app/ui/common/app_colors.dart';
-import 'package:sdg_hackaton_app/ui/common/ui_helpers.dart';
+import 'package:sdg_hackaton_app/utilities/constants/colors.dart';
+import 'package:sdg_hackaton_app/utilities/ui_helpers/dimensions.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -49,7 +49,7 @@ class InfoAlertDialog extends StackedView<InfoAlertDialogModel> {
                       Text(
                         request.description!,
                         style:
-                            const TextStyle(fontSize: 14, color: kcMediumGrey),
+                            const TextStyle(fontSize: 14, color: AppColors.mediumGrey),
                         maxLines: 3,
                         softWrap: true,
                       ),
