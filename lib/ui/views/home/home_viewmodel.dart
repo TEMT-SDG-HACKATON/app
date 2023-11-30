@@ -17,8 +17,12 @@ class HomeViewModel extends BaseViewModel {
   final _bottomSheetService = locator<BottomSheetService>();
   final _appService = locator<AppService>();
   final _navigationService = locator<NavigationService>();
+  final amountCardController = PageController();
+
+  int _amountCardIndex = 0;
 
   int get selectedPageIndex => _appService.selectedPageIndex;
+  int get amountCardIndex => _amountCardIndex;
 
   List<Widget> pages = <Widget>[
     DashboardView(),
@@ -53,6 +57,11 @@ class HomeViewModel extends BaseViewModel {
     //               context.go('/give');
     //               break;
     //           }
+  }
+
+  changeAmountCard(int value){
+    _amountCardIndex = value;
+    rebuildUi();
   }
 
   void incrementCounter() {
