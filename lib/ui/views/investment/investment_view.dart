@@ -43,24 +43,6 @@ class InvestmentView extends StackedView<InvestmentViewModel> {
             ),
 
             Gap(24.h),
-
-            CustomButton(
-              buttonText: 'Sign in',
-              onPressed: () {},
-            ),
-            Gap(12.h),
-            CustomButton(
-              buttonText: 'Sign in with Google',
-              fontColor: AppColors.black,
-              prefix: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SvgPicture.asset(googleImage),
-              ),
-              backgroundColor: Colors.transparent,
-              borderColor: AppColors.black.withOpacity(0.5),
-              onPressed: () {},
-            ),
-            Gap(24.h),
           ],
         ),
       )
