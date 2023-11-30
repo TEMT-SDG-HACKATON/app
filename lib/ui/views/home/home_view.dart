@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:gap/gap.dart';
-import 'package:sdg_hackaton_app/ui/common/base_ui.dart';
-import 'package:sdg_hackaton_app/ui/common/custom_button.dart';
-import 'package:sdg_hackaton_app/ui/common/custom_text_button.dart';
-import 'package:sdg_hackaton_app/ui/common/custom_text_display.dart';
-import 'package:sdg_hackaton_app/ui/common/custom_text_form_field.dart';
-import 'package:sdg_hackaton_app/utilities/constants/colors.dart';
-import 'package:sdg_hackaton_app/utilities/constants/images.dart';
+import 'package:sdg_hackaton_app/data/models/home_enum.dart';
+import 'package:sdg_hackaton_app/ui/views/home/navbar.dart';
 import 'package:stacked/stacked.dart';
 
 import 'home_viewmodel.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
-  const HomeView({Key? key}) : super(key: key);
+  final HomeViewEnum homeViewEnum;
+  const HomeView({required, Key? key, required this.homeViewEnum})
+      : super(key: key);
 
   @override
   Widget builder(
@@ -22,65 +16,15 @@ class HomeView extends StackedView<HomeViewModel> {
     HomeViewModel viewModel,
     Widget? child,
   ) {
-    return BaseUi(allowBackButton: true, children: [
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 48),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // const BackButton(
-            //   color: Colors.black,
-            // ),
-            Gap(54.h),
-            SvgPicture.asset(
-              logoImage,
-              semanticsLabel: 'logo',
-              height: 40,
-              width: 40,
-            ),
-            Gap(16.h),
-            const CustomTextDisplay(
-              inputText: 'Sign up',
-              textFontSize: 20,
-              textFontWeight: FontWeight.w600,
-            ),
-            Gap(16.h),
-            const CustomTextDisplay(
-              inputText: 'Start your 30-day free trial.',
-              textColor: AppColors.darkBlue,
-              textFontSize: 16,
-              textFontWeight: FontWeight.w400,
-            ),
-            Gap(24.h),
-
-            Gap(24.h),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const CustomTextDisplay(
-                  inputText: 'Already have an account?  ',
-                  textFontSize: 14,
-                  textColor: AppColors.darkBlue,
-                  textFontWeight: FontWeight.w400,
-                ),
-                CustomTextButton(
-                  onPressed: () {},
-                  child: const CustomTextDisplay(
-                    inputText: 'Sign in',
-                    textFontSize: 14,
-                    textColor: AppColors.primaryColor,
-                    textFontWeight: FontWeight.w600,
-                  ),
-                  overlayColor: AppColors.accentColor,
-                ),
-              ],
-            ),
-            Gap(12.h),
-          ],
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: IndexedStack(
+          index: viewModel.selectedPageIndex,
+          children: viewModel.pages,
         ),
-      )
-    ]);
+        bottomNavigationBar: NavBar(
+          viewModel: viewModel,
+        ));
   }
 
   @override
@@ -88,4 +32,9 @@ class HomeView extends StackedView<HomeViewModel> {
     BuildContext context,
   ) =>
       HomeViewModel();
+}
+
+class HomeViewArguments {
+  final HomeViewEnum homeViewEnum;
+  HomeViewArguments({required this.homeViewEnum});
 }

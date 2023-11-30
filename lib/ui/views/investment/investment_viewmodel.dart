@@ -5,14 +5,11 @@ import 'package:sdg_hackaton_app/app/app.locator.dart';
 import 'package:sdg_hackaton_app/app/app.router.dart';
 import 'package:sdg_hackaton_app/services/app_service.dart';
 import 'package:sdg_hackaton_app/ui/views/home/dashboard_view.dart';
-import 'package:sdg_hackaton_app/ui/views/investment/investment_view.dart';
-import 'package:sdg_hackaton_app/ui/views/profile/profile_view.dart';
-import 'package:sdg_hackaton_app/ui/views/savings/savings_view.dart';
 import 'package:sdg_hackaton_app/utilities/constants/strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class HomeViewModel extends BaseViewModel {
+class InvestmentViewModel extends BaseViewModel {
   final _dialogService = locator<DialogService>();
   final _bottomSheetService = locator<BottomSheetService>();
   final _appService = locator<AppService>();
@@ -21,10 +18,7 @@ class HomeViewModel extends BaseViewModel {
   int get selectedPageIndex => _appService.selectedPageIndex;
 
   List<Widget> pages = <Widget>[
-    DashboardView(),
-    SavingsView(),
-    InvestmentView(),
-    ProfileView()
+    DashboardView()
   ];
 
   String get counterLabel => 'Counter is: $_counter';

@@ -7,6 +7,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart' as _i4;
 import 'package:flutter/material.dart';
+import 'package:sdg_hackaton_app/data/models/home_enum.dart';
 import 'package:sdg_hackaton_app/ui/views/auth/login/login_view.dart';
 import 'package:sdg_hackaton_app/ui/views/auth/signup/signup_view.dart';
 import 'package:sdg_hackaton_app/ui/views/auth/splash/splash_view.dart';
@@ -61,8 +62,12 @@ class StackedRouter extends _i1.RouterBase {
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.HomeView: (data) {
+      var args = data.getArgs<_i2.HomeViewArguments>(
+        orElse: () =>
+            _i2.HomeViewArguments(homeViewEnum: HomeViewEnum.dashboard),
+      );
       return _i4.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i2.HomeView(),
+        builder: (context) => _i2.HomeView(homeViewEnum: args.homeViewEnum),
         settings: data,
       );
     },
@@ -72,19 +77,19 @@ class StackedRouter extends _i1.RouterBase {
         settings: data,
       );
     },
-     SplashView: (data) {
+    SplashView: (data) {
       return _i4.MaterialPageRoute<dynamic>(
         builder: (context) => const SplashView(),
         settings: data,
       );
     },
-     LoginView: (data) {
+    LoginView: (data) {
       return _i4.MaterialPageRoute<dynamic>(
         builder: (context) => const LoginView(),
         settings: data,
       );
     },
-     SignupView: (data) {
+    SignupView: (data) {
       return _i4.MaterialPageRoute<dynamic>(
         builder: (context) => const SignupView(),
         settings: data,
