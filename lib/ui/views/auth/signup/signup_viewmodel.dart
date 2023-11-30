@@ -6,7 +6,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class SignupViewModel extends BaseViewModel {
-  final emailFormKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
   final _navigationService = locator<NavigationService>();
   final _authService = locator<AuthService>();
 
@@ -31,7 +31,11 @@ class SignupViewModel extends BaseViewModel {
   //   }
   // }
 
-  setupFunction() async {
+  void goToLogin() {
+    _navigationService.navigateTo(Routes.loginView);
+  }
+
+  goToHome() async {
     await Future.delayed(const Duration(seconds: 3));
     _navigationService.replaceWithHomeView();
   }

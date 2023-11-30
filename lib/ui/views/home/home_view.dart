@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
+import 'package:sdg_hackaton_app/ui/common/base_ui.dart';
+import 'package:sdg_hackaton_app/ui/common/custom_button.dart';
+import 'package:sdg_hackaton_app/ui/common/custom_text_button.dart';
+import 'package:sdg_hackaton_app/ui/common/custom_text_display.dart';
+import 'package:sdg_hackaton_app/ui/common/custom_text_form_field.dart';
 import 'package:sdg_hackaton_app/utilities/constants/colors.dart';
-import 'package:sdg_hackaton_app/utilities/ui_helpers/dimensions.dart';
+import 'package:sdg_hackaton_app/utilities/constants/images.dart';
 import 'package:stacked/stacked.dart';
 
 import 'home_viewmodel.dart';
@@ -14,67 +22,65 @@ class HomeView extends StackedView<HomeViewModel> {
     HomeViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return BaseUi(allowBackButton: true, children: [
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 48),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // const BackButton(
+            //   color: Colors.black,
+            // ),
+            Gap(54.h),
+            SvgPicture.asset(
+              logoImage,
+              semanticsLabel: 'logo',
+              height: 40,
+              width: 40,
+            ),
+            Gap(16.h),
+            const CustomTextDisplay(
+              inputText: 'Sign up',
+              textFontSize: 20,
+              textFontWeight: FontWeight.w600,
+            ),
+            Gap(16.h),
+            const CustomTextDisplay(
+              inputText: 'Start your 30-day free trial.',
+              textColor: AppColors.darkBlue,
+              textFontSize: 16,
+              textFontWeight: FontWeight.w400,
+            ),
+            Gap(24.h),
+
+            Gap(24.h),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                verticalSpaceLarge,
-                Column(
-                  children: [
-                    const Text(
-                      'Hello, STACKED!',
-                      style: TextStyle(
-                        fontSize: 35,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    verticalSpaceMedium,
-                    MaterialButton(
-                      color: Colors.black,
-                      onPressed: viewModel.incrementCounter,
-                      child: Text(
-                        viewModel.counterLabel,
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
+                const CustomTextDisplay(
+                  inputText: 'Already have an account?  ',
+                  textFontSize: 14,
+                  textColor: AppColors.darkBlue,
+                  textFontWeight: FontWeight.w400,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MaterialButton(
-                      color: AppColors.mediumGrey,
-                      onPressed: viewModel.showDialog,
-                      child: const Text(
-                        'Show Dialog',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    MaterialButton(
-                      color: AppColors.gray3,
-                      onPressed: viewModel.showBottomSheet,
-                      child: const Text(
-                        'Show Bottom Sheet',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                )
+                CustomTextButton(
+                  onPressed: () {},
+                  child: const CustomTextDisplay(
+                    inputText: 'Sign in',
+                    textFontSize: 14,
+                    textColor: AppColors.primaryColor,
+                    textFontWeight: FontWeight.w600,
+                  ),
+                  overlayColor: AppColors.accentColor,
+                ),
               ],
             ),
-          ),
+            Gap(12.h),
+          ],
         ),
-      ),
-    );
+      )
+    ]);
   }
 
   @override

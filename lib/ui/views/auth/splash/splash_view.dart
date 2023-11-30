@@ -20,14 +20,13 @@ class SplashView extends StackedView<SplashViewModel> {
     return Scaffold(
       backgroundColor: AppColors.secondaryColor,
       body: Center(
-          child: Shimmer.fromColors(
-        baseColor: AppColors.primaryColor.withOpacity(0.85),
-        highlightColor: Colors.grey.shade50,
-        // baseColor: AppColors.primaryColor.withOpacity(0),
-        // highlightColor:AppColors.secondaryColor,//
-        enabled: true,
-        child: SvgPicture.asset(logoImage, semanticsLabel: 'logo'),
-      )),
+        child: SvgPicture.asset(
+          logoImage,
+          semanticsLabel: 'logo',
+          height: 120,
+          width: 120,
+        ),
+      ),
     );
   }
 
