@@ -7,7 +7,9 @@ import 'package:sdg_hackaton_app/ui/common/custom_button.dart';
 import 'package:sdg_hackaton_app/ui/common/custom_image.dart';
 import 'package:sdg_hackaton_app/ui/common/custom_text_display.dart';
 import 'package:sdg_hackaton_app/ui/views/investment/investment_viewmodel.dart';
+import 'package:sdg_hackaton_app/ui/views/investment/widgets/credit_card_widget.dart';
 import 'package:sdg_hackaton_app/utilities/constants/colors.dart';
+import 'package:sdg_hackaton_app/utilities/constants/images.dart';
 import 'package:sdg_hackaton_app/utilities/function_helpers/amount_helper.dart';
 import 'package:sdg_hackaton_app/utilities/ui_helpers/screen_sizing.dart';
 import 'package:stacked/stacked.dart';
@@ -34,7 +36,7 @@ class InvestmentSummaryView extends StackedView<InvestmentViewModel> {
               textFontSize: 20,
               textFontWeight: FontWeight.w500,
             ),
-            Gap(16.h),
+            Gap(12.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -62,7 +64,7 @@ class InvestmentSummaryView extends StackedView<InvestmentViewModel> {
                     image: viewModel.selectedInvestmentDetail.companyLogo)
               ],
             ),
-            Gap(32.h),
+            Gap(24.h),
             Container(
               margin: EdgeInsets.only(bottom: 16.w),
               padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
@@ -161,6 +163,20 @@ class InvestmentSummaryView extends StackedView<InvestmentViewModel> {
                 )
               ],
             ),
+            Gap(24),
+          viewModel.hasCard
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [creditCardWidget()],
+                  )
+                : CustomTextDisplay(
+                    inputText:
+                        '*No card found. Please add a card and fund wallet to continue',
+                    noOfTextLine: 2,
+                    textColor: AppColors.darkBlue,
+                    textFontSize: 14,
+                    textFontWeight: FontWeight.w500,
+                  ),
             Spacer(),
             Row(
               children: [

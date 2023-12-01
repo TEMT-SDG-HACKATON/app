@@ -18,7 +18,7 @@ class SplashView extends StackedView<SplashViewModel> {
     Widget? child,
   ) {
     return Scaffold(
-      backgroundColor: AppColors.secondaryColor,
+      backgroundColor: AppColors.primaryColor,
       body: Center(
         child: SvgPicture.asset(
           logoImage,

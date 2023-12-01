@@ -42,7 +42,6 @@ class InvestmentView extends StackedView<InvestmentViewModel> {
               Gap(8.h),
               const CustomTextDisplay(
                 inputText: 'N200,000.00',
-                textColor: AppColors.darkBlue,
                 textFontSize: 18,
                 textFontWeight: FontWeight.w600,
               ),

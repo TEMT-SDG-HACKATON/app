@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sdg_hackaton_app/ui/common/custom_text_display.dart';
 import 'package:sdg_hackaton_app/utilities/constants/colors.dart';
+
 class CustomTextFormField extends StatefulWidget {
   final String hintText;
   final TextEditingController? controller;
@@ -30,6 +31,8 @@ class CustomTextFormField extends StatefulWidget {
   final String? countryDialCode;
   final onCountryChanged;
   final bool border;
+  final bool underLine;
+  final List<TextInputFormatter>? formatters;
 
   const CustomTextFormField({
     Key? key,
@@ -43,6 +46,7 @@ class CustomTextFormField extends StatefulWidget {
     this.maxLines = 1,
     this.onSubmit,
     this.onChanged,
+    this.formatters,
     this.prefixIcon,
     this.titleText,
     this.capitalization = TextCapitalization.none,
@@ -52,6 +56,7 @@ class CustomTextFormField extends StatefulWidget {
     this.prefixImage,
     this.prefixSize = 10,
     this.fontSize,
+    this.underLine = false,
     this.validator,
     this.autoValidate = true,
     this.iconSize = 18,
@@ -94,10 +99,13 @@ class CustomTextFieldState extends State<CustomTextFormField> {
           obscureText: widget.isPassword ? _obscureText : false,
           inputFormatters: widget.inputType == TextInputType.phone
               ? <TextInputFormatter>[
-                  FilteringTextInputFormatter.allow(RegExp('[0-9+]'))
+                  FilteringTextInputFormatter.allow(RegExp('[0-9+]')),
+                  ...widget.formatters ?? []
                 ]
-              : null,
+              : widget.formatters,
           decoration: InputDecoration(
+            contentPadding:
+                widget.underLine ? EdgeInsets.fromLTRB(12, 12, 12, 12) : null,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6),
               borderSide: BorderSide(
@@ -105,20 +113,42 @@ class CustomTextFieldState extends State<CustomTextFormField> {
                   width: 0.3,
                   color: Theme.of(context).primaryColor),
             ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(6),
-              borderSide: BorderSide(
-                  style: widget.border ? BorderStyle.solid : BorderStyle.none,
-                  width: 0.3,
-                  color: AppColors.black.withOpacity(0.25)),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(6),
-              borderSide: BorderSide(
-                  style: widget.border ? BorderStyle.solid : BorderStyle.none,
-                  width: 1,
-                  color: AppColors.black.withOpacity(0.75)),
-            ),
+            enabledBorder: widget.underLine
+                ? UnderlineInputBorder(
+                    borderRadius: BorderRadius.circular(0),
+                    borderSide: BorderSide(
+                        style: widget.border
+                            ? BorderStyle.solid
+                            : BorderStyle.none,
+                        color: AppColors.black.withOpacity(0.25)),
+                  )
+                : OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6),
+                    borderSide: BorderSide(
+                        style: widget.border
+                            ? BorderStyle.solid
+                            : BorderStyle.none,
+                        width: 0.3,
+                        color: AppColors.black.withOpacity(0.25)),
+                  ),
+            focusedBorder: widget.underLine
+                ? UnderlineInputBorder(
+                    borderRadius: BorderRadius.circular(0),
+                    borderSide: BorderSide(
+                        style: widget.border
+                            ? BorderStyle.solid
+                            : BorderStyle.none,
+                        color: AppColors.black.withOpacity(0.75)),
+                  )
+                : OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6),
+                    borderSide: BorderSide(
+                        style: widget.border
+                            ? BorderStyle.solid
+                            : BorderStyle.none,
+                        width: 1,
+                        color: AppColors.black.withOpacity(0.75)),
+                  ),
             isDense: true,
             hintText: widget.hintText,
             fillColor: Theme.of(context).cardColor,

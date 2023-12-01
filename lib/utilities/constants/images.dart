@@ -2,6 +2,10 @@ const String onboardingRiderImage = 'assets/images/onboarding_rider.svg';
 const String logoImage = 'assets/images/logo.svg';
 const String profileImage = 'assets/images/profile.png';
 const String noImage = 'assets/images/no_image.svg';
+const String cardFrameImage = 'assets/images/card_frame.svg';
+const String simImage = 'assets/images/sim.svg';
+const String visaImage = 'assets/images/visa.svg';
+const String onboardingManImage= 'assets/images/onboarding_man.svg';
 
 //icons
 const String googleImage = 'assets/icons/google.svg';

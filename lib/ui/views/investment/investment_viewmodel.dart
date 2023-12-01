@@ -16,6 +16,7 @@ class InvestmentViewModel extends BaseViewModel {
   final _appService = locator<AppService>();
   final _navigationService = locator<NavigationService>();
   bool _isReinvest = true;
+  bool hasCard = true;
 
   InvestmentDetailsModel get selectedInvestmentDetail =>
       _appService.selectedInvestmentDetail;

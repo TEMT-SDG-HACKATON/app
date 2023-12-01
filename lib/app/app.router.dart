@@ -10,17 +10,22 @@ import 'package:flutter/material.dart';
 import 'package:sdg_hackaton_app/data/models/home_enum.dart';
 import 'package:sdg_hackaton_app/ui/views/auth/login/login_view.dart';
 import 'package:sdg_hackaton_app/ui/views/auth/signup/signup_view.dart';
+import 'package:sdg_hackaton_app/ui/views/auth/splash/onboarding_view.dart';
 import 'package:sdg_hackaton_app/ui/views/auth/splash/splash_view.dart';
 import 'package:sdg_hackaton_app/ui/views/home/home_view.dart' as _i2;
 import 'package:sdg_hackaton_app/ui/views/investment/all_investments_view.dart';
 import 'package:sdg_hackaton_app/ui/views/investment/investment_list_view.dart';
 import 'package:sdg_hackaton_app/ui/views/investment/investment_summary.dart';
+import 'package:sdg_hackaton_app/ui/views/savings/add_card_view.dart';
+import 'package:sdg_hackaton_app/ui/views/savings/savings_details_view.dart';
 import 'package:sdg_hackaton_app/ui/views/startup/startup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
 import 'package:stacked_services/stacked_services.dart' as _i5;
 
 class Routes {
   static const homeView = '/home-view';
+
+  static const onboardingView = '/onboarding-view';
 
   static const startupView = '/startup-view';
 
@@ -36,8 +41,13 @@ class Routes {
 
   static const investmentSummaryView = '/investment-summary-view';
 
+  static const savingsDetailsView = '/savings-details-view';
+
+  static const addCardView = '/add-card-view';
+
   static const all = <String>{
     homeView,
+    onboardingView,
     startupView,
     splashView,
     signupView,
@@ -45,6 +55,8 @@ class Routes {
     allInvestmentsView,
     investmentListView,
     investmentSummaryView,
+    savingsDetailsView,
+    addCardView,
   };
 }
 
@@ -53,6 +65,10 @@ class StackedRouter extends _i1.RouterBase {
     _i1.RouteDef(
       Routes.homeView,
       page: _i2.HomeView,
+    ),
+    _i1.RouteDef(
+      Routes.onboardingView,
+      page: OnboardingView,
     ),
     _i1.RouteDef(
       Routes.startupView,
@@ -82,6 +98,14 @@ class StackedRouter extends _i1.RouterBase {
       Routes.investmentSummaryView,
       page: InvestmentSummaryView,
     ),
+    _i1.RouteDef(
+      Routes.savingsDetailsView,
+      page: SavingsDetailsView,
+    ),
+    _i1.RouteDef(
+      Routes.addCardView,
+      page: AddCardView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
@@ -98,6 +122,12 @@ class StackedRouter extends _i1.RouterBase {
     _i3.StartupView: (data) {
       return _i4.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.StartupView(),
+        settings: data,
+      );
+    },
+    OnboardingView: (data) {
+      return _i4.MaterialPageRoute<dynamic>(
+        builder: (context) => const OnboardingView(),
         settings: data,
       );
     },
@@ -137,6 +167,22 @@ class StackedRouter extends _i1.RouterBase {
     InvestmentSummaryView: (data) {
       return _i4.MaterialPageRoute<dynamic>(
         builder: (context) => const InvestmentSummaryView(),
+        settings: data,
+      );
+    },
+    SavingsDetailsView: (data) {
+      var args = data.getArgs<SavingsDetailsViewArguments>(
+        orElse: () =>
+            SavingsDetailsViewArguments(type: 'Flexible Savings Plan'),
+      );
+      return _i4.MaterialPageRoute<dynamic>(
+        builder: (context) => SavingsDetailsView(type: args.type),
+        settings: data,
+      );
+    },
+    AddCardView: (data) {
+      return _i4.MaterialPageRoute<dynamic>(
+        builder: (context) => const AddCardView(),
         settings: data,
       );
     },

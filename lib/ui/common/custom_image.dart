@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:sdg_hackaton_app/utilities/constants/images.dart';
 
 class CustomImage extends StatelessWidget {
   final double dimension;
@@ -22,7 +23,7 @@ class CustomImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: image == null
-          ? SvgPicture.asset('assets/no_image.svg', height: 24.h)
+          ? SvgPicture.asset(noImage, height: 24.h)
           : image!.toLowerCase().endsWith('.svg')
               ? isNetwork!
                   ? SvgPicture.network(
@@ -31,7 +32,7 @@ class CustomImage extends StatelessWidget {
                       width: dimension.w,
                       fit: fit ?? BoxFit.contain,
                       placeholderBuilder: (BuildContext context) {
-                        return SvgPicture.asset('assets/no_image.svg');
+                        return SvgPicture.asset(noImage);
                       },
                     )
                   : SvgPicture.asset(
@@ -40,7 +41,7 @@ class CustomImage extends StatelessWidget {
                       height: dimension.h,
                       width: dimension.w,
                       placeholderBuilder: (BuildContext context) {
-                        return SvgPicture.asset('assets/no_image.svg');
+                        return SvgPicture.asset(noImage);
                       },
                     )
               : isNetwork!
@@ -51,7 +52,7 @@ class CustomImage extends StatelessWidget {
                       width: dimension.w,
                       errorBuilder: (BuildContext context, Object error,
                           StackTrace? stackTrace) {
-                        return SvgPicture.asset('assets/no_image.svg');
+                        return SvgPicture.asset(noImage);
                       },
                     )
                   : Image.network(
@@ -61,7 +62,7 @@ class CustomImage extends StatelessWidget {
                       width: dimension.w,
                       errorBuilder: (BuildContext context, Object error,
                           StackTrace? stackTrace) {
-                        return SvgPicture.asset('assets/no_image.svg');
+                        return SvgPicture.asset(noImage);
                       },
                     ),
     );
