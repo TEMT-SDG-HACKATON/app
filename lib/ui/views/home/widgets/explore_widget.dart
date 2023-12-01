@@ -12,8 +12,6 @@ Widget exploreWidget(
       callback();
     },
     child: Container(
-      width: 327,
-      height: 82,
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       decoration: ShapeDecoration(
         color: color,

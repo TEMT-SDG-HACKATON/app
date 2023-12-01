@@ -12,6 +12,9 @@ import 'package:sdg_hackaton_app/ui/views/auth/login/login_view.dart';
 import 'package:sdg_hackaton_app/ui/views/auth/signup/signup_view.dart';
 import 'package:sdg_hackaton_app/ui/views/auth/splash/splash_view.dart';
 import 'package:sdg_hackaton_app/ui/views/home/home_view.dart' as _i2;
+import 'package:sdg_hackaton_app/ui/views/investment/all_investments_view.dart';
+import 'package:sdg_hackaton_app/ui/views/investment/investment_list_view.dart';
+import 'package:sdg_hackaton_app/ui/views/investment/investment_summary.dart';
 import 'package:sdg_hackaton_app/ui/views/startup/startup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
 import 'package:stacked_services/stacked_services.dart' as _i5;
@@ -27,12 +30,21 @@ class Routes {
 
   static const signupView = '/signup-view';
 
+  static const allInvestmentsView = '/all-investments-view';
+
+  static const investmentListView = '/investment-list-view';
+
+  static const investmentSummaryView = '/investment-summary-view';
+
   static const all = <String>{
     homeView,
     startupView,
     splashView,
     signupView,
     loginView,
+    allInvestmentsView,
+    investmentListView,
+    investmentSummaryView,
   };
 }
 
@@ -57,6 +69,18 @@ class StackedRouter extends _i1.RouterBase {
     _i1.RouteDef(
       Routes.signupView,
       page: SignupView,
+    ),
+    _i1.RouteDef(
+      Routes.allInvestmentsView,
+      page: AllInvestmentsView,
+    ),
+    _i1.RouteDef(
+      Routes.investmentListView,
+      page: InvestmentListView,
+    ),
+    _i1.RouteDef(
+      Routes.investmentSummaryView,
+      page: InvestmentSummaryView,
     ),
   ];
 
@@ -92,6 +116,27 @@ class StackedRouter extends _i1.RouterBase {
     SignupView: (data) {
       return _i4.MaterialPageRoute<dynamic>(
         builder: (context) => const SignupView(),
+        settings: data,
+      );
+    },
+    AllInvestmentsView: (data) {
+      return _i4.MaterialPageRoute<dynamic>(
+        builder: (context) => const AllInvestmentsView(),
+        settings: data,
+      );
+    },
+    InvestmentListView: (data) {
+      var args = data.getArgs<InvestmentListViewArguments>(
+        orElse: () => InvestmentListViewArguments(type: 'Low-risk Investments'),
+      );
+      return _i4.MaterialPageRoute<dynamic>(
+        builder: (context) => InvestmentListView(type: args.type),
+        settings: data,
+      );
+    },
+    InvestmentSummaryView: (data) {
+      return _i4.MaterialPageRoute<dynamic>(
+        builder: (context) => const InvestmentSummaryView(),
         settings: data,
       );
     },

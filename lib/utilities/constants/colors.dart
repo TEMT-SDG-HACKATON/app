@@ -20,4 +20,5 @@ class AppColors {
   static const Color gray3 = Color.fromRGBO(128, 128, 128, 1);
   static const Color red = Colors.red;
   static const Color yellow = Colors.yellow;
+  static const Color green = Colors.green;
 }
