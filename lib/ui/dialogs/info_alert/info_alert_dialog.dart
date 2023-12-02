@@ -32,13 +32,29 @@ class InfoAlertDialog extends StackedView<InfoAlertDialogModel> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            Container(
+                width: _graphicSize,
+                height: _graphicSize,
+                decoration: const BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(_graphicSize / 2),
+                  ),
+                ),
+                alignment: Alignment.center,
+                child: const Icon(
+                  Icons.info_outline_rounded,
+                  size: 48,
+                  color: Colors.red,
+                )),
+            verticalSpaceTiny,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    // crossAxisAlignment: CrossAxisAlignment.sta,
                     children: [
                       Text(
                         request.title!,
@@ -48,29 +64,14 @@ class InfoAlertDialog extends StackedView<InfoAlertDialogModel> {
                       verticalSpaceTiny,
                       Text(
                         request.description!,
-                        style:
-                            const TextStyle(fontSize: 14, color: AppColors.mediumGrey),
+                        style: const TextStyle(
+                            fontSize: 14, color: AppColors.mediumGrey),
                         maxLines: 3,
                         softWrap: true,
                       ),
                     ],
                   ),
                 ),
-                Container(
-                  width: _graphicSize,
-                  height: _graphicSize,
-                  decoration: const BoxDecoration(
-                    color: Color(0xffF6E7B0),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(_graphicSize / 2),
-                    ),
-                  ),
-                  alignment: Alignment.center,
-                  child: const Text(
-                    '⭐️',
-                    style: TextStyle(fontSize: 30),
-                  ),
-                )
               ],
             ),
             verticalSpaceMedium,
