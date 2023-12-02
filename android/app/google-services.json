@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "772379802860",
+    "project_id": "agrivest-866ab",
+    "storage_bucket": "agrivest-866ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772379802860:android:897bf88358843e3c6279c9",
+        "android_client_info": {
+          "package_name": "com.example.sdg_hackaton_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772379802860-qlm09a0t6bhc3fr3fj8k84jcaipengg5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqMHb2IbKA1YKbMiPKgWqjGNM12c0B7tQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772379802860-qlm09a0t6bhc3fr3fj8k84jcaipengg5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

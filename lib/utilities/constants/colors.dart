@@ -22,3 +22,5 @@ class AppColors {
   static const Color yellow = Colors.yellow;
   static const Color green = Colors.green;
 }
+
+const int delayTime = 1200;

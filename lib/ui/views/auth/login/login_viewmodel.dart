@@ -3,6 +3,7 @@ import 'package:sdg_hackaton_app/app/app.dialogs.dart';
 import 'package:sdg_hackaton_app/app/app.locator.dart';
 import 'package:sdg_hackaton_app/app/app.router.dart';
 import 'package:sdg_hackaton_app/services/auth_service.dart';
+import 'package:sdg_hackaton_app/utilities/constants/colors.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:get/get.dart';
@@ -30,7 +31,7 @@ class LoginViewModel extends BaseViewModel {
   Future<void> loginFunction() async {
     if (formKey.currentState!.validate()) {
       setBusy(true);
-      await Future.delayed(Duration(milliseconds: 1500));
+      await Future.delayed(Duration(milliseconds: delayTime));
       Response response = await _authService.login(
           email: emailController.text.trim(),
           password: passwordController.text.trim());

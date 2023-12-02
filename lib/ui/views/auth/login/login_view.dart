@@ -11,6 +11,7 @@ import 'package:sdg_hackaton_app/ui/common/custom_text_display.dart';
 import 'package:sdg_hackaton_app/ui/common/custom_text_form_field.dart';
 import 'package:sdg_hackaton_app/utilities/constants/colors.dart';
 import 'package:sdg_hackaton_app/utilities/constants/images.dart';
+import 'package:sdg_hackaton_app/utilities/constants/strings.dart';
 import 'package:sdg_hackaton_app/utilities/function_helpers/validation_helper.dart';
 import 'package:sdg_hackaton_app/utilities/ui_helpers/screen_sizing.dart';
 import 'package:stacked/stacked.dart';
@@ -40,11 +41,24 @@ class LoginView extends StackedView<LoginViewModel> {
                   //   color: Colors.black,
                   // ),
                   Gap(54.h),
-                  SvgPicture.asset(
-                    logoImage,
-                    semanticsLabel: 'logo',
-                    height: 40,
-                    width: 40,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CustomTextDisplay(
+                        inputText: appNameString,
+                        textColor: AppColors.primaryColor,
+                        textFontSize: 27,
+                        textFontWeight: FontWeight.w700,
+                      ),
+                      Gap(5.w),
+                      SvgPicture.asset(
+                        logoImage,
+                        semanticsLabel: 'logo',
+                        height: 36,
+                        width: 36,
+                      ),
+                    ],
                   ),
                   Gap(16.h),
                   const CustomTextDisplay(
