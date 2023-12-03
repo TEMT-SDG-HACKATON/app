@@ -7,7 +7,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart' as _i4;
 import 'package:flutter/material.dart';
-import 'package:sdg_hackaton_app/data/models/home_enum.dart';
+import 'package:sdg_hackaton_app/models/home_enum.dart';
 import 'package:sdg_hackaton_app/ui/views/auth/login/login_view.dart';
 import 'package:sdg_hackaton_app/ui/views/auth/signup/signup_view.dart';
 import 'package:sdg_hackaton_app/ui/views/auth/splash/onboarding_view.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-import 'package:sdg_hackaton_app/data/models/investment_details.dart';
+import 'package:sdg_hackaton_app/models/investment_details.dart';
 import 'package:sdg_hackaton_app/ui/bottom_sheets/investment_details.dart/investment_details_sheet_viewmodel.dart';
 import 'package:sdg_hackaton_app/ui/common/custom_button.dart';
 import 'package:sdg_hackaton_app/ui/common/custom_text_display.dart';

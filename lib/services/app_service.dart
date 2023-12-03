@@ -1,4 +1,4 @@
-import 'package:sdg_hackaton_app/data/models/investment_details.dart';
+import 'package:sdg_hackaton_app/models/investment_details.dart';
 
 class AppService {
   int? _selectedPageIndex;

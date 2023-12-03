@@ -32,20 +32,10 @@ class LoginViewModel extends BaseViewModel {
     if (formKey.currentState!.validate()) {
       setBusy(true);
       await Future.delayed(Duration(milliseconds: delayTime));
-      Response response = await _authService.login(
+      await _authService.login(
           email: emailController.text.trim(),
           password: passwordController.text.trim());
-      if (response.statusCode == 200) {
-        String? token = response.body['token'];
-        _authService.setToken(token ?? '');
-        _navigationService.navigateTo(Routes.homeView);
-      } else {
-        _dialogService.showCustomDialog(
-          variant: DialogType.infoAlert,
-          title: 'An error occured',
-          description: 'Email or password is incorrect',
-        );
-      }
+
       setBusy(false);
     }
   }

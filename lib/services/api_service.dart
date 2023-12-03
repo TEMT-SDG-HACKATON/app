@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
 
 import 'package:get/get.dart';
-import 'package:sdg_hackaton_app/data/models/error_response.dart';
+import 'package:sdg_hackaton_app/models/error_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 

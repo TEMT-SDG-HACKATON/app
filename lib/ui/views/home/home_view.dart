@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sdg_hackaton_app/data/models/home_enum.dart';
+import 'package:sdg_hackaton_app/models/home_enum.dart';
 import 'package:sdg_hackaton_app/ui/views/home/widgets/navbar.dart';
 import 'package:stacked/stacked.dart';
 

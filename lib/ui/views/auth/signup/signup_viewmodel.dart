@@ -22,22 +22,10 @@ class SignupViewModel extends BaseViewModel {
     if (formKey.currentState!.validate()) {
       setBusy(true);
       await Future.delayed(Duration(milliseconds: delayTime));
-      Response response = await _authService.signup(
+      await _authService.signup(
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
           name: nameController.text.trim());
-
-      if (response.statusCode == 200) {
-        String? token = response.body['token'];
-        _authService.setToken(token ?? '');
-        _navigationService.navigateTo(Routes.homeView);
-      } else {
-        _dialogService.showCustomDialog(
-          variant: DialogType.infoAlert,
-          title: 'An error occured',
-          description: 'Something went wrong',
-        );
-      }
       setBusy(false);
     }
   }

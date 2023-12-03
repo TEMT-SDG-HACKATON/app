@@ -9,6 +9,7 @@
 import 'package:sdg_hackaton_app/services/api_service.dart';
 import 'package:sdg_hackaton_app/services/app_service.dart';
 import 'package:sdg_hackaton_app/services/auth_service.dart';
+import 'package:sdg_hackaton_app/services/firestore_service.dart';
 import 'package:stacked_services/src/bottom_sheet/bottom_sheet_service.dart';
 import 'package:stacked_services/src/dialog/dialog_service.dart';
 import 'package:stacked_services/src/navigation/navigation_service.dart';
@@ -31,4 +32,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => ApiService());
   locator.registerLazySingleton(() => AuthService());
   locator.registerLazySingleton(() => AppService());
+  locator.registerLazySingleton(() => FireStoreService());
 }

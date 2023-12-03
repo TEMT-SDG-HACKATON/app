@@ -1,7 +1,7 @@
 import 'package:sdg_hackaton_app/app/app.bottomsheets.dart';
 import 'package:sdg_hackaton_app/app/app.locator.dart';
 import 'package:sdg_hackaton_app/app/app.router.dart';
-import 'package:sdg_hackaton_app/data/models/investment_details.dart';
+import 'package:sdg_hackaton_app/models/investment_details.dart';
 import 'package:sdg_hackaton_app/services/app_service.dart';
 import 'package:sdg_hackaton_app/ui/views/investment/investment_list_view.dart';
 import 'package:sdg_hackaton_app/utilities/constants/images.dart';
