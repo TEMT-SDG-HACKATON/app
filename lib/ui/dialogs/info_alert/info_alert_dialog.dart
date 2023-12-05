@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sdg_hackaton_app/utilities/constants/colors.dart';
+import 'package:sdg_hackaton_app/utilities/constants/strings.dart';
 import 'package:sdg_hackaton_app/utilities/ui_helpers/dimensions.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -42,11 +43,17 @@ class InfoAlertDialog extends StackedView<InfoAlertDialogModel> {
                   ),
                 ),
                 alignment: Alignment.center,
-                child: const Icon(
-                  Icons.info_outline_rounded,
-                  size: 48,
-                  color: Colors.red,
-                )),
+                child: request.title == successString
+                    ? const Icon(
+                        Icons.check_circle_outline_rounded,
+                        size: 48,
+                        color: Colors.green,
+                      )
+                    : const Icon(
+                        Icons.info_outline_rounded,
+                        size: 48,
+                        color: Colors.red,
+                      )),
             verticalSpaceTiny,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -77,9 +84,14 @@ class InfoAlertDialog extends StackedView<InfoAlertDialogModel> {
             ),
             verticalSpaceMedium,
             GestureDetector(
-              onTap: () => completer(DialogResponse(
-                confirmed: true,
-              )),
+              onTap: () {
+                completer(DialogResponse(
+                  confirmed: true,
+                ));
+                if (request.title == successString) {
+                  viewModel.goToHome();
+                }
+              },
               child: Container(
                 height: 50,
                 width: double.infinity,

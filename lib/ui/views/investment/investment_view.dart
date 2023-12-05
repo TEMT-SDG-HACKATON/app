@@ -8,6 +8,7 @@ import 'package:sdg_hackaton_app/ui/views/investment/investment_viewmodel.dart';
 import 'package:sdg_hackaton_app/ui/views/investment/widgets/my_investment_widget.dart';
 import 'package:sdg_hackaton_app/utilities/constants/colors.dart';
 import 'package:sdg_hackaton_app/utilities/constants/images.dart';
+import 'package:sdg_hackaton_app/utilities/function_helpers/amount_helper.dart';
 import 'package:stacked/stacked.dart';
 
 class InvestmentView extends StackedView<InvestmentViewModel> {
@@ -40,8 +41,8 @@ class InvestmentView extends StackedView<InvestmentViewModel> {
                 textFontWeight: FontWeight.w400,
               ),
               Gap(8.h),
-              const CustomTextDisplay(
-                inputText: 'N200,000.00',
+              CustomTextDisplay(
+                inputText: AmountHelper.formatAmount(200000),
                 textFontSize: 18,
                 textFontWeight: FontWeight.w600,
               ),

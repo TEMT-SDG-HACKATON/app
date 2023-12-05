@@ -5,7 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:sdg_hackaton_app/ui/common/custom_text_display.dart';
 import 'package:sdg_hackaton_app/utilities/constants/images.dart';
 
-Widget profileRow() {
+Widget profileRow({required String name}) {
   return Row(
     children: [
       Image.asset(
@@ -14,8 +14,8 @@ Widget profileRow() {
         width: 32.w,
       ),
       Gap(6.w),
-      const CustomTextDisplay(
-        inputText: 'Hi Timi',
+      CustomTextDisplay(
+        inputText: 'Hi $name',
         textFontSize: 14,
         textFontWeight: FontWeight.w500,
       ),

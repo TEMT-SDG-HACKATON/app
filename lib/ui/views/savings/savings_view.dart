@@ -7,6 +7,7 @@ import 'package:sdg_hackaton_app/ui/common/custom_text_display.dart';
 import 'package:sdg_hackaton_app/ui/views/savings/savings_viewmodel.dart';
 import 'package:sdg_hackaton_app/utilities/constants/colors.dart';
 import 'package:sdg_hackaton_app/utilities/constants/images.dart';
+import 'package:sdg_hackaton_app/utilities/function_helpers/amount_helper.dart';
 import 'package:stacked/stacked.dart';
 
 class SavingsView extends StackedView<SavingsViewModel> {
@@ -39,8 +40,9 @@ class SavingsView extends StackedView<SavingsViewModel> {
                 textFontWeight: FontWeight.w400,
               ),
               Gap(8.h),
-              const CustomTextDisplay(
-                inputText: 'N200,000.00',
+              CustomTextDisplay(
+                inputText:
+                    AmountHelper.formatAmount(viewModel.user.walletBalance),
                 textFontSize: 18,
                 textFontWeight: FontWeight.w600,
               ),

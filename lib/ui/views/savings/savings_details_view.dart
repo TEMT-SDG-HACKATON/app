@@ -1,4 +1,6 @@
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:sdg_hackaton_app/ui/common/base_ui.dart';
@@ -23,6 +25,7 @@ class SavingsDetailsView extends StackedView<SavingsViewModel> {
       Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 48),
         child: Form(
+          key: viewModel.savingsFormKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -39,9 +42,6 @@ class SavingsDetailsView extends StackedView<SavingsViewModel> {
                 showTitle: true,
                 hintText: 'Enter the name of your plan',
                 validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Sorry, name is needed';
-                  }
                   return null;
                 },
               ),
@@ -49,10 +49,19 @@ class SavingsDetailsView extends StackedView<SavingsViewModel> {
               CustomTextFormField(
                 titleText: 'Savings amount',
                 showTitle: true,
+                inputType: TextInputType.number,
+                controller: viewModel.savingsAmountController,
                 hintText: 'Enter the savings amount',
+                formatters: <TextInputFormatter>[
+                  CurrencyTextInputFormatter(
+                    locale: 'en_NG',
+                    decimalDigits: 0,
+                    symbol: '₦',
+                  ),
+                ],
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Sorry, name is needed';
+                    return 'Please input the amount you want to save';
                   }
                   return null;
                 },
@@ -102,9 +111,11 @@ class SavingsDetailsView extends StackedView<SavingsViewModel> {
               CustomButton(
                   buttonText: 'Continue',
                   backgroundColor: AppColors.primaryColor,
-                  onPressed: () {
-                    viewModel.goToAddCard();
-                  }),
+                  onPressed: viewModel.selectedFrequency == ""
+                      ? null
+                      : () {
+                          viewModel.goToAddCard();
+                        }),
               Gap(12.h),
             ],
           ),
@@ -123,7 +134,6 @@ class SavingsDetailsView extends StackedView<SavingsViewModel> {
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
-        // margin: EdgeInsets.only(right: 12.h),
         decoration: BoxDecoration(
           color: viewModel.selectedFrequency == frequency
               ? AppColors.lightGrey

@@ -23,6 +23,7 @@ dependencies:
   firebase_core: ^2.24.0
   firebase_auth: ^4.15.0
   cloud_firestore: ^4.13.3
+  currency_text_input_formatter: ^2.1.10
 
 dev_dependencies:
   build_runner: ^2.4.5

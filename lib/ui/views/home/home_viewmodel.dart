@@ -3,7 +3,9 @@ import 'package:sdg_hackaton_app/app/app.bottomsheets.dart';
 import 'package:sdg_hackaton_app/app/app.dialogs.dart';
 import 'package:sdg_hackaton_app/app/app.locator.dart';
 import 'package:sdg_hackaton_app/app/app.router.dart';
+import 'package:sdg_hackaton_app/models/user.dart';
 import 'package:sdg_hackaton_app/services/app_service.dart';
+import 'package:sdg_hackaton_app/services/auth_service.dart';
 import 'package:sdg_hackaton_app/ui/views/home/dashboard_view.dart';
 import 'package:sdg_hackaton_app/ui/views/investment/investment_view.dart';
 import 'package:sdg_hackaton_app/ui/views/profile/profile_view.dart';
@@ -16,20 +18,15 @@ class HomeViewModel extends BaseViewModel {
   final _dialogService = locator<DialogService>();
   final _bottomSheetService = locator<BottomSheetService>();
   final _appService = locator<AppService>();
+  final _authService = locator<AuthService>();
   final _navigationService = locator<NavigationService>();
   final amountCardController = PageController();
 
   int _amountCardIndex = 0;
 
+  UserModel get user => _authService.user;
   int get selectedPageIndex => _appService.selectedPageIndex;
   int get amountCardIndex => _amountCardIndex;
-
-  List<Widget> pages = <Widget>[
-    DashboardView(),
-    SavingsView(),
-    InvestmentView(),
-    ProfileView()
-  ];
 
   String get counterLabel => 'Counter is: $_counter';
 
@@ -38,30 +35,23 @@ class HomeViewModel extends BaseViewModel {
   void goToTab(int index) {
     _appService.selectPageIndex(index);
     rebuildUi();
-
-    //  switch (index) {
-    //             case 0:
-
-    //               _navigationService.navigateTo(Routes.homeView);
-    //               break;
-    //             case 1:
-    //               Provider.of<AppProvider>(context, listen: false).goToDrawer(5);
-    //               context.go('/messages');
-    //               break;
-    //             case 2:
-    //               Provider.of<AppProvider>(context, listen: false).goToDrawer(0);
-    //               context.go('/liberationTV');
-    //               break;
-    //             case 3:
-    //               Provider.of<AppProvider>(context, listen: false).goToDrawer(1);
-    //               context.go('/give');
-    //               break;
-    //           }
   }
 
-  changeAmountCard(int value){
+  changeAmountCard(int value) {
     _amountCardIndex = value;
     rebuildUi();
+  }
+
+  double getTotalInvestmentAmount() {
+    if (user.investments == null) {
+      return 0;
+    }
+    double ans = 0;
+    for (var i = 0; i < user.investments!.length; i++) {
+      final inv = user.investments![i];
+      ans = ans + (inv.purchasedUnits! * inv.perUnitValue!);
+    }
+    return ans;
   }
 
   void incrementCounter() {

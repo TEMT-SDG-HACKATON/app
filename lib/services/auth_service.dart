@@ -40,6 +40,10 @@ class AuthService {
   //       .postData(loginUrl, {"email": email, "password": password});
   // }
 
+  setUser(UserModel value) {
+    _user = value;
+  }
+
   Future<void> login({required String email, required String password}) async {
     // return await _apiService
     //     .postData(loginUrl, {"email": email, "password": password});
@@ -48,7 +52,7 @@ class AuthService {
           email: email, password: password);
 
       if (result.user != null) {
-        _fireStoreService.getUser(result.user?.uid).then((value) {
+        await _fireStoreService.getUser(result.user?.uid).then((value) {
           if (value != null) {
             _user = value;
             _navigationService.navigateTo(Routes.homeView);
@@ -98,7 +102,7 @@ class AuthService {
           walletBalance: 0.0,
           investments: [],
         );
-        _fireStoreService.addUser(userModel).then((value) {
+        await _fireStoreService.addUser(userModel).then((value) {
           if (value) {
             _user = userModel;
             _navigationService.navigateTo(Routes.homeView);

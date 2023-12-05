@@ -1,4 +1,5 @@
 import 'package:sdg_hackaton_app/app/app.bottomsheets.dart';
+import 'package:sdg_hackaton_app/app/app.dialogs.dart';
 import 'package:sdg_hackaton_app/app/app.locator.dart';
 import 'package:sdg_hackaton_app/app/app.router.dart';
 import 'package:sdg_hackaton_app/models/investment_details.dart';
@@ -44,7 +45,11 @@ class InvestmentViewModel extends BaseViewModel {
   }
 
   void goToSuccessScreen() {
-    print('success!');
+    _dialogService.showCustomDialog(
+      variant: DialogType.infoAlert,
+      title: successString,
+      description: 'Coongrats on your new investment!',
+    );
   }
 
   void showDetilsBottomSheet() {

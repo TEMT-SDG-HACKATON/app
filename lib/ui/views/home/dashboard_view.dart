@@ -9,19 +9,18 @@ import 'package:sdg_hackaton_app/ui/views/home/widgets/profile_row.dart';
 import 'package:sdg_hackaton_app/ui/views/home/widgets/quick_action_widget.dart';
 import 'package:sdg_hackaton_app/utilities/constants/colors.dart';
 import 'package:sdg_hackaton_app/utilities/constants/images.dart';
+import 'package:sdg_hackaton_app/utilities/function_helpers/amount_helper.dart';
 import 'package:sdg_hackaton_app/utilities/ui_helpers/screen_sizing.dart';
-import 'package:stacked/stacked.dart';
 
 import 'home_viewmodel.dart';
 
-class DashboardView extends StackedView<HomeViewModel> {
-  const DashboardView({Key? key}) : super(key: key);
+class DashboardView extends StatelessWidget {
+  final HomeViewModel viewModel;
+  const DashboardView({Key? key, required this.viewModel}) : super(key: key);
 
   @override
-  Widget builder(
+  Widget build(
     BuildContext context,
-    HomeViewModel viewModel,
-    Widget? child,
   ) {
     return BaseUi(allowBackButton: true, children: [
       Padding(
@@ -31,7 +30,7 @@ class DashboardView extends StackedView<HomeViewModel> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Gap(24.h),
-              profileRow(),
+              profileRow(name: viewModel.user.name ?? ''),
               Gap(16.h),
               Column(
                 mainAxisSize: MainAxisSize.min,
@@ -48,16 +47,19 @@ class DashboardView extends StackedView<HomeViewModel> {
                       itemBuilder: (context, index) {
                         return index == 0
                             ? amountCard(
-                                amount: "N200,000.00",
+                                amount: AmountHelper.formatAmount(
+                                    viewModel.user.walletBalance),
                                 cardText: "Total Savings",
                                 buttonText: "Top up",
                                 percentage: "8",
                                 color: AppColors.primaryColor)
                             : amountCard(
-                                amount: "N200,000.00",
+                                amount: AmountHelper.formatAmount(
+                                    viewModel.getTotalInvestmentAmount()),
                                 cardText: "Total Investments",
                                 buttonText: "Top up",
-                                percentage: "8",
+                                percentage:
+                                    "${viewModel.user.investments!.isEmpty ? 0 : viewModel.user.investments?.first.roi}",
                                 color: AppColors.blue);
                       },
                     ),
@@ -121,13 +123,17 @@ class DashboardView extends StackedView<HomeViewModel> {
                   title: 'Explore Savings',
                   icon: targetImage,
                   color: Color(0xFFCAFFD8),
-                  callback: () {}),
+                  callback: () {
+                    viewModel.goToTab(1);
+                  }),
               Gap(16.h),
               exploreWidget(
                   title: 'Explore Investments',
                   color: Color(0xFFCAECFF),
                   icon: investImage,
-                  callback: () {}),
+                  callback: () {
+                    viewModel.goToTab(2);
+                  }),
               Gap(24.h),
               const CustomTextDisplay(
                 inputText: 'Recent Activities',
@@ -141,10 +147,4 @@ class DashboardView extends StackedView<HomeViewModel> {
       )
     ]);
   }
-
-  @override
-  HomeViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
-      HomeViewModel();
 }

@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sdg_hackaton_app/app/app.dialogs.dart';
 import 'package:sdg_hackaton_app/app/app.locator.dart';
 import 'package:sdg_hackaton_app/models/user.dart';
+import 'package:sdg_hackaton_app/services/auth_service.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class FireStoreService {
@@ -40,5 +41,24 @@ class FireStoreService {
       );
       return null;
     }
+  }
+
+  Future<bool> updateUserWallet(
+      {required String uid, required double amount}) async {
+    bool response = false;
+    await _users
+        .doc(uid)
+        // .update({'info.address.zipcode': 90210})
+        .update({'walletBalance': amount}).then((value) {
+      response = true;
+    }).catchError((error) {
+      response = false;
+      _dialogService.showCustomDialog(
+        variant: DialogType.infoAlert,
+        title: 'An error occured',
+        description: '$error',
+      );
+    });
+    return response;
   }
 }

@@ -70,7 +70,7 @@ class AllInvestmentsView extends StackedView<InvestmentViewModel> {
               SizedBox(
                 height: 80.h,
                 child: ListView.builder(
-                    itemCount: 5,
+                    itemCount: 3,
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
@@ -114,7 +114,7 @@ class AllInvestmentsView extends StackedView<InvestmentViewModel> {
               SizedBox(
                 height: 80.h,
                 child: ListView.builder(
-                    itemCount: 5,
+                    itemCount: 1,
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
@@ -158,7 +158,7 @@ class AllInvestmentsView extends StackedView<InvestmentViewModel> {
               SizedBox(
                 height: 80.h,
                 child: ListView.builder(
-                    itemCount: 5,
+                    itemCount: 0,
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
